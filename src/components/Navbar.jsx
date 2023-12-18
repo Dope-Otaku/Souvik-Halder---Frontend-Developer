@@ -3,11 +3,11 @@ import { Link } from 'react-scroll';
 import { FaRocket } from 'react-icons/fa';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 
-const UpdatedNavbar = () => {
+const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <div className='fixed w-full'>
+        <div className='fixed w-full z-50'>
             <div>
                 <div className='flex flex-row justify-between p-5 md:px-32 px-5 bg-white shadow-[0_3px_10px_rgba(0,0,0,0.2)]'>
                     <div className='flex flex-row items-center cursor-pointer'>
@@ -32,7 +32,7 @@ const UpdatedNavbar = () => {
                         <Link to='home' spy={true} smooth={true} duration={500} className='hover:text-brightColor transition-all cursor-pointer'>
                             HUMAN SPACEFLIGHT
                         </Link>
-                        <button>Mode</button>
+                        
                     </nav>
                     <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`} style={{ transition: 'all 0.3s ease' }}>
                         <div className='fixed top-30 right-0 h-1/2 w-1/4 bg-white shadow-[0_3px_10px_rgba(0,0,0,0.2)]'>
@@ -52,7 +52,7 @@ const UpdatedNavbar = () => {
                                 <Link to='home' spy={true} smooth={true} duration={500} className='hover:text-brightColor transition-all cursor-pointer'>
                                     HUMAN SPACEFLIGHT
                                 </Link>
-                                <button>Mode</button>
+                                
                             </nav>
                         </div>
                     </div>
@@ -67,4 +67,4 @@ const UpdatedNavbar = () => {
     );
 };
 
-export default UpdatedNavbar;
+export default Navbar;
