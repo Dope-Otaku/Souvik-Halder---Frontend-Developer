@@ -8,7 +8,7 @@ function App() {
     <div>
       
       <main>
-        <div id='navbar'>
+        <div className='navbar'>
           <Navbar />
         </div>
         <div id='home'>
