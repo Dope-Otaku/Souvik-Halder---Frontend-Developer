@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Home from '../src/components/Home';
 import ModalCard from '../src/components/ModalCard';
 import Navbar from '../src/components/Navbar';
@@ -11,10 +12,41 @@ import { fireEvent } from '@testing-library/react';
 
 
 // Home.test.js
+jest.mock('../src/layouts/Button.jsx', () => () => <button>Click me</button>);
 
 test('renders Home component', () => {
-    render(<Home />);
-    
+  render(<Home />);
+  
+  const titleElement = screen.getByText(/SpaceX: Inspiring Tomorrow's Discoveries/i);
+  const descriptionElement = screen.getByText(/Embark on a cosmic odyssey with SpaceX/i);
+  const buttonElement = screen.getByRole('button', { name: /Click me/i });
+  
+  expect(titleElement).toBeInTheDocument();
+  expect(descriptionElement).toBeInTheDocument();
+  expect(buttonElement).toBeInTheDocument();
+});
+
+test('renders title and description correctly', () => {
+  render(<Home />);
+  const titleElement = screen.getByText(/SpaceX: Inspiring Tomorrow's Discoveries/i);
+  const descriptionElement = screen.getByText(/Embark on a cosmic odyssey with SpaceX/i);
+  
+  expect(titleElement).toBeInTheDocument();
+  expect(descriptionElement).toBeInTheDocument();
+});
+
+test('renders Button component', () => {
+  render(<Home />);
+  const buttonElement = screen.getByRole('button', { name: /Click me/i });
+  expect(buttonElement).toBeInTheDocument();
+});
+
+test('clicking on the button triggers the expected action', () => {
+  render(<Home />);
+  const buttonElement = screen.getByRole('button', { name: /Click me/i });
+  const mockAction = jest.fn();
+  userEvent.click(buttonElement);
+  expect(mockAction).toHaveBeenCalled();
 });
 
 // ModalCard.test.js
